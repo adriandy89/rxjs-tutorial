@@ -11,12 +11,13 @@ const source = of('World').pipe(
 
 source.subscribe(console.log)
  */
-const source2 = of('World').pipe(
-    map(x => `Hello ${x}`),
-    tap(ev => console.log(ev + ' - esto es solo un log')),
-    delay(3000), // esperar 3s
-    scan((acc, one) => acc + one, 'Holis, '), // Resp:  Holis, Hello World
-    filter(x => x.includes('Hello'))    // Continua la ejecucion al subscribe, se cumple
-)
+const source2 = of('World') // of - crea un observable
+    .pipe(
+        map(x => `Hello ${x}`),
+        tap(ev => console.log(ev + ' - esto es solo un log')),
+        delay(3000), // esperar 3s
+        scan((acc, one) => acc + one, 'Holis, '), // Resp:  Holis, Hello World
+        filter(x => x.includes('Hello'))    // Continua la ejecucion al subscribe, se cumple
+    )
 
 source2.subscribe(console.log)
